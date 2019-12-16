@@ -1,31 +1,55 @@
 import React, {Component} from "react";
-import Radium from "radium";
-import './Car.css';
+import './Car.scss';
+import PropTypes from 'prop-types';
+import withClass from '../hoc/withClass';
 
-const Car = (props) => {
-    const inputClases = ['input'];
+class Car extends Component {
 
-    if (props.name !== '') {
-        inputClases.push('green')
-    } else {
-        inputClases.push('red')
-    }
-    if (props.name.length > 4) {
-        inputClases.push('bold');
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef();
     }
 
-    return (
-        <div className={'Car'}>
-            <h3>Сar name: {props.name}</h3>
-            <p>Year: <strong>{props.year}</strong></p>
-            <input type="text"
-                   onChange={props.onChangeName}
-                   value={props.name}
-                   className={inputClases.join(' ')}
-            />
-            <button onClick={props.onDelete}>Delete</button>
-        </div>
-    )
+    componentDidMount() {
+        if (this.props.index === 0) {
+            this.inputRef.current.focus();
+        }
+    }
+
+    render() {
+        const inputClases = ['input'];
+
+        if (this.props.name !== '') {
+            inputClases.push('green')
+        } else {
+            inputClases.push('red')
+        }
+        if (this.props.name.length > 4) {
+            inputClases.push('bold');
+        }
+
+        return (
+            <React.Fragment>
+                <h3>Сar name: {this.props.name}</h3>
+                <p>Year: <strong>{this.props.year}</strong></p>
+                <input type="text"
+                       onChange={this.props.onChangeName}
+                       value={this.props.name}
+                       className={inputClases.join(' ')}
+                       ref={this.inputRef}
+                />
+                <button onClick={this.props.onDelete}>Delete</button>
+            </React.Fragment>
+        )
+    }
+}
+
+Car.propTypes = {
+  name: PropTypes.string,
+  index: PropTypes.number,
+  year: PropTypes.number,
+  onChangeName: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
-export default Car;
+export default withClass(Car, 'Car');

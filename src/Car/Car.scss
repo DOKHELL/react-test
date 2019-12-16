@@ -1,0 +1,18 @@
+.Car {
+    margin-bottom: 10px;
+    display: block;
+    padding: 10px;
+}
+
+.input {
+    &.green {
+        border: 1px solid green;
+    }
+    &.red {
+        border: 1px solid red;
+    }
+    &.bold {
+        border: 2px solid green;
+        font-weight: bold;
+    }
+}
