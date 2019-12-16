@@ -1,0 +1,20 @@
+.Car {
+    margin-bottom: 10px;
+    display: block;
+    padding: 10px;
+}
+
+.input {
+    outline: none;
+}
+
+.input.green {
+    border: 1px solid green;
+}
+.input.red {
+    border: 1px solid red;
+}
+.input.bold {
+    border: 2px solid green;
+    font-weight: bold;
+}
